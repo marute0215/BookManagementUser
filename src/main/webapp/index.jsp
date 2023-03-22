@@ -15,7 +15,11 @@
 	<a href="RegisterFormServlet">新規会員登録</a><br>
 	<a href="LoginFormServlet">ログインページ</a><br>
 	
-	<p>図書検索</p>
+	<form action="SearchBookServlet" method="post">
+	図書検索 <input type="text" name="name">
+		<input type="submit" value="検索">
+	</form>
+	
 	<p>最新の口コミ一覧</p>
 	
 </body>
