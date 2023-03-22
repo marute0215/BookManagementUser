@@ -19,6 +19,7 @@
 	図書検索 <input type="text" name="name">
 		<input type="submit" value="検索">
 	</form>
+	
 	<p>最新の口コミ一覧</p>
 	
 </body>
