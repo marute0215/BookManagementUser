@@ -44,7 +44,9 @@ public class SearchBookServlet extends HttpServlet {
 		
 		String view = "";
 		if(result==0) {
+
 			view = "WEB-INF/view/search_success.jsp";
+
 
 		}else {
 			view = "WEB-INF/view/search_fail.jsp";
