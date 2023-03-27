@@ -9,21 +9,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.UserDAO;
-import dto.ToshoExam;
+import dto.BookLendingList;
+import dto.User;
 
 /**
- * Servlet implementation class SearchBookServlet
+ * Servlet implementation class UserBookHistoryServlet
  */
-@WebServlet("/SearchBookServlet")
-public class SearchBookServlet extends HttpServlet {
+@WebServlet("/UserBookHistoryServlet")
+public class UserBookHistoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchBookServlet() {
+    public UserBookHistoryServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,20 +35,21 @@ public class SearchBookServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
+		User ac = (User)session.getAttribute("user");
 		
-		String name = request.getParameter("name");
-		List<ToshoExam> bookList = UserDAO.selectAllBook(name);
+		String mail = ac.getMail();
+		
+		List<BookLendingList> bookhistoryList = UserDAO.SelectAllBookHistory(mail);
 		
 		int result = 0;
 		
 		// 取得したリストをリクエストスコープに保管(JSPに渡すため)
-		request.setAttribute("list", bookList);
+		request.setAttribute("bookhistoryList",bookhistoryList);
 		
 		String view = "";
 		if(result==0) {
-
-			view = "WEB-INF/view/search_success.jsp";
-
+			view = "WEB-INF/view/user-book_historyList.jsp";
 
 		}else {
 			view = "WEB-INF/view/search_fail.jsp";

@@ -16,11 +16,10 @@
 	<a href="LoginFormServlet">ログインページ</a><br>
 	
 	<form action="SearchBookServlet" method="post">
-	図書検索 <input type="text" name="name">
-		<input type="submit" value="検索">
+	<h2>図書検索</h2>
+	<h2 >図書名：<input type="text" name="name"></h2><br>
+	<input type="submit" value="検索"><br>
 	</form>
-	
-	<p>最新の口コミ一覧</p>
 	
 </body>
 </html>

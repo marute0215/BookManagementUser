@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,21 +8,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.UserDAO;
-import dto.ToshoExam;
+import dto.User;
 
 /**
- * Servlet implementation class SearchBookServlet
+ * Servlet implementation class BookMouthRegisterServlet
  */
-@WebServlet("/SearchBookServlet")
-public class SearchBookServlet extends HttpServlet {
+@WebServlet("/BookMouthRegisterServlet")
+public class BookMouthRegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchBookServlet() {
+    public BookMouthRegisterServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,23 +34,20 @@ public class SearchBookServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		String name = request.getParameter("name");
-		List<ToshoExam> bookList = UserDAO.selectAllBook(name);
+		HttpSession session = request.getSession();
+		User ac = (User)session.getAttribute("user");
+		String book_name = (String)session.getAttribute("book_name");
+		int book_id = (int)session.getAttribute("book_id");
+		int user_id = ac.getUser_id();
 		
-		int result = 0;
+		String comment = request.getParameter("comment");
 		
-		// 取得したリストをリクエストスコープに保管(JSPに渡すため)
-		request.setAttribute("list", bookList);
+		String assessment = request.getParameter("assessment");
+		int assessment2 = Integer.parseInt(assessment);
 		
-		String view = "";
-		if(result==0) {
-
-			view = "WEB-INF/view/search_success.jsp";
-
-
-		}else {
-			view = "WEB-INF/view/search_fail.jsp";
-		}
+		UserDAO.BookMouthRegister(book_id, user_id, comment, assessment2);
+		
+		String view = "WEB-INF/view/BookMouthRegister-success.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);
 	}

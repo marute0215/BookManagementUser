@@ -10,8 +10,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dto.BookLendingList;
 import dto.ToshoExam;
 import dto.User;
+import dto.UserMouth;
 import util.GenerateHashedPw;
 import util.GenerateSalt;
 
@@ -233,6 +235,117 @@ public class UserDAO {
 		} finally {
 			System.out.println(result + "件更新しました。");
 		}
+		return result;
+	}
+	
+	public static List<BookLendingList> SelectAllBookHistory(String mail) {
+		// 返却用変数
+		List<BookLendingList> result = new ArrayList<>();
+
+		String sql = "select book.name as book_name, book.isbn,\r\n"
+				+ "user_management.surname, user_management.name, user_management.mail,\r\n"
+				+ "TO_CHAR(book_lending.borrow_date, 'YYYY/MM/DD HH24:MI') as borrow_date, \r\n"
+				+ "TO_CHAR(book_lending.return_date, 'YYYY/MM/DD HH24:MI') as return_date, \r\n"
+				+ "book_lending.due_date, book_lending.user_id, book_lending.book_id \r\n"
+				+ "from ( book_lending inner join user_management on book_lending.user_id = user_management.user_id )\r\n"
+				+ "inner join book on book_lending.book_id = book.id where mail = ? order by due_date desc;";
+		
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			pstmt.setString(1, mail);
+			try (ResultSet rs = pstmt.executeQuery()){
+				
+				while(rs.next()) {
+					String book_name = rs.getString("book_name");
+					String isbn = rs.getString("isbn");
+					String suruser = rs.getString("surname");
+					String name = rs.getString("name");
+					String borrow_date = rs.getString("borrow_date");
+					String due_date = rs.getString("due_date");
+					int user_id = rs.getInt("user_id");
+					int book_id = rs.getInt("book_id");
+					String return_date = rs.getString("return_date");
+					
+					BookLendingList Ac = new BookLendingList(book_name, isbn, suruser, name, mail, borrow_date, due_date, user_id, book_id, return_date);
+					
+					result.add(Ac);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+
+		// Listを返却する。0件の場合は空のListが返却される。
+		return result;
+   }
+	
+	public static int BookMouthRegister(int book_id, int user_id, String comment, int assessment) {
+		String sql = "INSERT INTO book_mouth VALUES(default, ?, ?, ?, ?, current_timestamp)";
+		int result = 0;
+				
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+
+				pstmt.setInt(1, book_id);
+			    pstmt.setInt(2, user_id);
+				pstmt.setString(3, comment);
+				pstmt.setInt(4, assessment);
+				
+				result = pstmt.executeUpdate();
+	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println(result + "件更新しました。");
+		}
+		return result;
+	}
+	
+    public static List<UserMouth> SelectLimitMouth() {
+		
+		// 返却用変数
+		List<UserMouth> result = new ArrayList<>();
+
+		String sql = "select book.name as book_name, user_management.surname,\r\n"
+				+ "book_mouth.word_mouth, book_mouth.assessment,\r\n"
+				+ "TO_CHAR(book_mouth.created_at, 'YYYY/MM/DD HH24:MI') as created_at\r\n"
+				+ "from ( book_mouth inner join book on book_mouth.book_id = book.id )\r\n"
+				+ "inner join user_management on book_mouth.user_id = user_management.user_id where assessment > 2 order by created_at desc limit 10";
+		
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			try (ResultSet rs = pstmt.executeQuery()){
+				while(rs.next()) {
+					
+					
+					String book_name = rs.getString("book_name");
+					String surname = rs.getString("surname");
+					String word_mouth = rs.getString("word_mouth");
+					int assessment = rs.getInt("assessment");
+					String created_at = rs.getString("created_at");
+					
+					UserMouth Ac = new UserMouth(book_name, surname, word_mouth, assessment, created_at);
+					
+					result.add(Ac);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+
+		// Listを返却する。0件の場合は空のListが返却される。
 		return result;
 	}
 }
