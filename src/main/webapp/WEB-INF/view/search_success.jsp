@@ -37,12 +37,6 @@
 			<td><%=ee.getIsbn() %></td>
 			<td ><%=ee.getAuthor()%></td>
 			<td><%=ee.getNew_old() %></td>
-			<td>
-				<form action="RegisterConfirmServlet" method="post">
-					<input type="hidden" name="isbn" value="<%=ee.getIsbn() %>">
-					<input type="submit" value="削除">
-				</form>
-			</td>
 		</tr>
 		<%
 		}
