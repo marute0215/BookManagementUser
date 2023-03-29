@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>利用者画面</title>
 </head>
 <body>
 	<h2>モリジョビ図書館</h2>
