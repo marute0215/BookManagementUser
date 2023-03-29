@@ -16,9 +16,11 @@
 	%>
 	<p>ようこそ<%= ac.getName() %>さん</p>
 	
+
 	<h3>ユーザーメニュー</h3><br>
 	<a href="UserBookHistoryServlet">借用履歴</a><br><br>
 	<a href="UserBookMouthListServlet">最新の口コミ</a><br><br>
+  <a href="LogoutServlet">ログアウト</a><br>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
