@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>利用者メニュー画面</title>
+<title>登録完了</title>
 </head>
 <body>
-
+	<h2>登録しました</h2>
+	<a href = "./">戻る</a>
 </body>
 </html>
