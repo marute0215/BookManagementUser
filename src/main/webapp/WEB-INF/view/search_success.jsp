@@ -22,7 +22,7 @@
 			<th>ISBN</th>
 			<th>著者</th>
 			<th>新旧</th>
-			
+			<th></th>
 		</tr>
 	
 		<%
@@ -37,6 +37,12 @@
 			<td><%=ee.getIsbn() %></td>
 			<td ><%=ee.getAuthor()%></td>
 			<td><%=ee.getNew_old() %></td>
+			<td>
+				<form action="BookMouthListServlet" method="post">
+					<input type="hidden" name="id" value="<%=ee.getId() %>">
+					<input type="submit" value="口コミを見る">
+				</form>
+			</td>
 		</tr>
 		<%
 		}
