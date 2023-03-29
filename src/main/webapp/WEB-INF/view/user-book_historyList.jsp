@@ -7,25 +7,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet"href="css/index.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <title>検索結果</title>
 
 </head>
 <body>
-
-	<h2>借用履歴</h2>
-	<table border="1">
-		<tr>
-			<th>図書名</th>
-			<th>ISBN</th>
-			<th>姓</th>
-			<th>名</th>
-			<th>メール</th>
-			<th>借用日</th>
-			<th>返却予定日</th>
-			<th>返却日</th>	
-			<th></th>
-		</tr>
-	
+<h2>モリジョビ図書館</h2><br>
+	<h3>借用履歴</h3><br>
+	<table class="table table-dark table-hover">
+		<thead>
+    		<tr>
+      			<th scope="col">図書名</th>
+      			<th scope="col">ISBN</th>
+      			<th scope="col">姓</th>
+      			<th scope="col">名</th>
+      			<th scope="col">メール</th>
+      			<th scope="col">借用日</th>
+      			<th scope="col">返却予定日</th>
+      			<th scope="col">返却日</th>
+    		</tr>
+  		</thead>
 		<%
 		List<BookLendingList> bookhistoryList = (List<BookLendingList>)request.getAttribute("bookhistoryList");
 		for(BookLendingList hh : bookhistoryList){
@@ -52,7 +54,7 @@
 		}
 		%>
 		</table>
-		<h2><a href="TopServlet">戻る</a></h2>
-		
+		<h3><a href="TopServlet">戻る</a></h3>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
