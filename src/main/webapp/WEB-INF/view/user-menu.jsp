@@ -17,6 +17,7 @@
 	<h2>管理者管理</h2>
 	<a href="UserBookHistoryServlet">借用履歴</a><br>
 	<a href="UserBookMouthListServlet">最新の口コミ</a><br>
+	<a href="LogoutServlet">ログアウト</a><br>
 	
 </body>
 </html>
