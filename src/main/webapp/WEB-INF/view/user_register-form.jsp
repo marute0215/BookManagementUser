@@ -24,6 +24,7 @@
 			パスワード：<input type="password" name="pw"><br>
 			<input type="submit" value="登録">
 		</form>
+		<a href="./">戻る</a>
 	<%
 		} else {
 	%>
@@ -36,6 +37,7 @@
 		パスワード：<input type="password" name="pw"><br>
 		<input type="submit" value="登録">
 	</form>
+	<a href="./">戻る</a>
 	<%
 		}
 	%>
