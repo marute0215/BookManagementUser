@@ -7,23 +7,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet"href="css/index.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <title>検索結果</title>
 
 </head>
 <body>
+<h2>モリジョビ図書館</h2><br>
 
-	<h2>検索結果</h2>
-	<table border="1">
-	
-		<tr>
-			<th>ID</th>
-			<th>図書名</th>
-			<th>出版社</th>
-			<th>ISBN</th>
-			<th>著者</th>
-			<th>新旧</th>
-			<th></th>
-		</tr>
+	<h3>検索結果</h3><br>
+	<table class="table table-dark table-hover">
+		<thead>
+    		<tr>
+      			<th scope="col">ID</th>
+      			<th scope="col">図書名</th>
+      			<th scope="col">出版社</th>
+      			<th scope="col">ISBN</th>
+      			<th scope="col">著者</th>
+      			<th scope="col">新旧</th>
+    		</tr>
+  		</thead>
 	
 		<%
 		List<ToshoExam> list = (List<ToshoExam>)request.getAttribute("list");
@@ -49,7 +52,7 @@
 		%>
 		</form>
 		</table>
-		<h2><a href="TopServlet">戻る</a></h2>
-		
+		<h3><a href="TopServlet">戻る</a></h3>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
