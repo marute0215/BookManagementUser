@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>口コミ投稿画面</title>
 </head>
 <body>
 	<%
@@ -22,6 +22,7 @@
 		  4<input type="radio" name="assessment" value="4">
 		  5<input type="radio" name="assessment" value="5">
 	<input type="submit" value="投稿"><br>
+	<a href = "TopServlet">戻る</a>
 	</form>
 </body>
 </html>

@@ -18,6 +18,7 @@
 		PW：<input type="password" name="pw"><br>
 		<input type="submit" value="ログイン"><br>
 	<a href="RegisterFormServlet">新規登録はこちら</a>
+	<a href = "./">戻る</a>
 	</form>
 	<%
 		} else {
@@ -28,6 +29,7 @@
 		PW：<input type="password" name="pw"><br><br>
 		<input type="submit" value="ログイン"><br><br>
 	<a href="RegisterFormServlet">新規登録はこちら</a>
+	<a href = "./">戻る</a>
 		
 	</form>
 	

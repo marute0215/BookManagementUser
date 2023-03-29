@@ -7,7 +7,7 @@
 <title>登録完了</title>
 </head>
 <body>
-	<h2>登録しました</h2>
+	<h2>登録成功</h2>
 	<a href = "./">戻る</a>
 </body>
 </html>
